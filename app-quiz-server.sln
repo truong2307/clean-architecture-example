@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.API", "QuizApp.API\QuizApp.API.csproj", "{5CD82CE7-7236-4171-9661-5D6C08CCA024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.API", "QuizApp.API\QuizApp.API.csproj", "{5CD82CE7-7236-4171-9661-5D6C08CCA024}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Domain", "QuizApp.Domain\QuizApp.Domain.csproj", "{16BF6756-A4FC-42C3-9F56-0E06050C12EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Application", "QuizApp.Application\QuizApp.Application.csproj", "{90B508A9-2455-4B86-BEE0-7ADAE7597AC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Infrastructure", "QuizApp.Infrastructure\QuizApp.Infrastructure.csproj", "{FAC8D918-24CA-4341-8D12-55CFE2805908}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{5CD82CE7-7236-4171-9661-5D6C08CCA024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD82CE7-7236-4171-9661-5D6C08CCA024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CD82CE7-7236-4171-9661-5D6C08CCA024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BF6756-A4FC-42C3-9F56-0E06050C12EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BF6756-A4FC-42C3-9F56-0E06050C12EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BF6756-A4FC-42C3-9F56-0E06050C12EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BF6756-A4FC-42C3-9F56-0E06050C12EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B508A9-2455-4B86-BEE0-7ADAE7597AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B508A9-2455-4B86-BEE0-7ADAE7597AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B508A9-2455-4B86-BEE0-7ADAE7597AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B508A9-2455-4B86-BEE0-7ADAE7597AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC8D918-24CA-4341-8D12-55CFE2805908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC8D918-24CA-4341-8D12-55CFE2805908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC8D918-24CA-4341-8D12-55CFE2805908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC8D918-24CA-4341-8D12-55CFE2805908}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
