@@ -1,6 +1,6 @@
 ﻿namespace QuizApp.Domain.SeedWork
 {
-    internal interface IRepository
+    public interface IRepository
     {
         IUnitOfWork UnitOfWork { get; }
     }
