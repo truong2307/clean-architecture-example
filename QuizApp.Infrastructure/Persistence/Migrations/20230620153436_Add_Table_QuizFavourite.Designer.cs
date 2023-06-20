@@ -9,11 +9,11 @@ using QuizApp.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace QuizApp.Infrastructure.Migrations
+namespace QuizApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WiQuizDbContext))]
-    [Migration("20230620152923_Add_Identity")]
-    partial class Add_Identity
+    [Migration("20230620153436_Add_Table_QuizFavourite")]
+    partial class Add_Table_QuizFavourite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,6 +155,162 @@ namespace QuizApp.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.ClassRoomCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClassRoomCategories");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ContentAnswer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_questionId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuestionId");
+
+                    b.Property<int>("_quizId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuizId");
+
+                    b.Property<string>("_studentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("StudentId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuizAnswers");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuizCategories");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizFavourite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_quizId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuizId");
+
+                    b.Property<string>("_userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuizFavourites");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ContentQuestion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionTitle")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.Property<int>("TypeOfQuestion")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_quizId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuizId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuizQuestions");
                 });
 
             modelBuilder.Entity("QuizApp.Infrastructure.Identity.ApplicationUser", b =>

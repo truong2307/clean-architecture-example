@@ -9,7 +9,7 @@ using QuizApp.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace QuizApp.Infrastructure.Migrations
+namespace QuizApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WiQuizDbContext))]
     [Migration("20230620153707_Add_Table_Quiz")]

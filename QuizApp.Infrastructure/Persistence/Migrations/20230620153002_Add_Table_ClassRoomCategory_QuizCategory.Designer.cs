@@ -9,11 +9,11 @@ using QuizApp.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace QuizApp.Infrastructure.Migrations
+namespace QuizApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WiQuizDbContext))]
-    [Migration("20230620153149_Add_Table_QuizQuestions")]
-    partial class Add_Table_QuizQuestions
+    [Migration("20230620153002_Add_Table_ClassRoomCategory_QuizCategory")]
+    partial class Add_Table_ClassRoomCategory_QuizCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -191,48 +191,6 @@ namespace QuizApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuizCategories");
-                });
-
-            modelBuilder.Entity("QuizApp.Domain.Entities.QuizQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ContentQuestion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionTitle")
-                        .IsRequired()
-                        .HasMaxLength(126)
-                        .HasColumnType("nvarchar(126)");
-
-                    b.Property<int>("TypeOfQuestion")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Updated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("_quizId")
-                        .HasColumnType("int")
-                        .HasColumnName("QuizId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuizQuestions");
                 });
 
             modelBuilder.Entity("QuizApp.Infrastructure.Identity.ApplicationUser", b =>

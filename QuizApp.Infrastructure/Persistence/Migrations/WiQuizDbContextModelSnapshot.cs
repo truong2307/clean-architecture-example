@@ -3,19 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuizApp.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace QuizApp.Infrastructure.Migrations
+namespace QuizApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(WiQuizDbContext))]
-    [Migration("20230620153224_Add_Table_QuizAnswer")]
-    partial class Add_Table_QuizAnswer
+    partial class WiQuizDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,6 +155,51 @@ namespace QuizApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("QuizApp.Domain.Entities.ClassRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<string>("HomeRoomTeacherId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_classRoomCategoryId")
+                        .HasColumnType("int")
+                        .HasColumnName("ClassRoomCategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_classRoomCategoryId");
+
+                    b.ToTable("ClassRooms");
+                });
+
             modelBuilder.Entity("QuizApp.Domain.Entities.ClassRoomCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -173,6 +216,52 @@ namespace QuizApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ClassRoomCategories");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.Quiz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.Property<int>("TypeOfPublish")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_quizCategoryId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuizCategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_quizCategoryId");
+
+                    b.ToTable("Quizzes");
                 });
 
             modelBuilder.Entity("QuizApp.Domain.Entities.QuizAnswer", b =>
@@ -215,6 +304,8 @@ namespace QuizApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("_quizId");
+
                     b.ToTable("QuizAnswers");
                 });
 
@@ -234,6 +325,43 @@ namespace QuizApp.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuizCategories");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizFavourite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("_quizId")
+                        .HasColumnType("int")
+                        .HasColumnName("QuizId");
+
+                    b.Property<string>("_userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_quizId");
+
+                    b.ToTable("QuizFavourites");
                 });
 
             modelBuilder.Entity("QuizApp.Domain.Entities.QuizQuestion", b =>
@@ -275,7 +403,49 @@ namespace QuizApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("_quizId");
+
                     b.ToTable("QuizQuestions");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.StudentInClassRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("_classRoomId")
+                        .HasColumnType("int")
+                        .HasColumnName("ClassRoomId");
+
+                    b.Property<string>("_studentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("StudentId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StudentInClassRooms");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.testEntrity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ABC")
+                        .IsRequired()
+                        .HasMaxLength(126)
+                        .HasColumnType("nvarchar(126)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("testEntritys");
                 });
 
             modelBuilder.Entity("QuizApp.Infrastructure.Identity.ApplicationUser", b =>
@@ -352,6 +522,21 @@ namespace QuizApp.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("QuizClassRoom", b =>
+                {
+                    b.Property<int>("QuizId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassRoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuizId", "ClassRoomId");
+
+                    b.HasIndex("ClassRoomId");
+
+                    b.ToTable("QuizClassRoom");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -401,6 +586,79 @@ namespace QuizApp.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.ClassRoom", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.ClassRoomCategory", "ClassRoomCategory")
+                        .WithMany()
+                        .HasForeignKey("_classRoomCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClassRoomCategory");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.Quiz", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.QuizCategory", "QuizCategory")
+                        .WithMany()
+                        .HasForeignKey("_quizCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuizCategory");
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizAnswer", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.Quiz", null)
+                        .WithMany("QuizAnswers")
+                        .HasForeignKey("_quizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizFavourite", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.Quiz", null)
+                        .WithMany("QuizFavourites")
+                        .HasForeignKey("_quizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.QuizQuestion", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.Quiz", null)
+                        .WithMany("QuizQuestions")
+                        .HasForeignKey("_quizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuizClassRoom", b =>
+                {
+                    b.HasOne("QuizApp.Domain.Entities.ClassRoom", null)
+                        .WithMany()
+                        .HasForeignKey("ClassRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuizApp.Domain.Entities.Quiz", null)
+                        .WithMany()
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuizApp.Domain.Entities.Quiz", b =>
+                {
+                    b.Navigation("QuizAnswers");
+
+                    b.Navigation("QuizFavourites");
+
+                    b.Navigation("QuizQuestions");
                 });
 #pragma warning restore 612, 618
         }

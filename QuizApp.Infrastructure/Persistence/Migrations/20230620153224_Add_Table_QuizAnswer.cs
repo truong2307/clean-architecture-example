@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace QuizApp.Infrastructure.Migrations
+namespace QuizApp.Infrastructure.Persistence.Migrations
 {
     public partial class Add_Table_QuizAnswer : Migration
     {
