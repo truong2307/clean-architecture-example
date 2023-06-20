@@ -12,7 +12,7 @@ namespace QuizApp.Infrastructure.Persistence.EntityConfigurations
 
             builder.Ignore(b => b.DomainEvents);
 
-            builder.Property<int>("_studentId")
+            builder.Property<string>("_studentId")
                .UsePropertyAccessMode(PropertyAccessMode.Field)
                .HasColumnName("StudentId")
                .IsRequired();

@@ -55,8 +55,8 @@ namespace QuizApp.Infrastructure.Persistence.EntityConfigurations
                             .HasPrincipalKey(nameof(ClassRoom.Id)),
                     j => j.HasKey("QuizId", "ClassRoomId"));
 
-            var navigation = builder.Metadata.FindNavigation(nameof(ClassRoom.Quizzes));
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+            //var navigation = builder.Metadata.FindNavigation(nameof(ClassRoom.Quizzes));
+            //navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

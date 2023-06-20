@@ -9,6 +9,8 @@ namespace QuizApp.Infrastructure.Persistence
 {
     public class WiQuizDbContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
     {
+        public WiQuizDbContext(DbContextOptions<WiQuizDbContext> options) : base(options) { }
+
         public DbSet<ClassRoom> ClassRooms { get; set; }
         public DbSet<ClassRoomCategory> ClassRoomCategories { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
@@ -18,10 +20,9 @@ namespace QuizApp.Infrastructure.Persistence
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
         public DbSet<StudentInClassRoom> StudentInClassRooms { get; set; }
 
-        public WiQuizDbContext(DbContextOptions<WiQuizDbContext> options) : base(options) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ClassRoomEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ClassRoomCategoryEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new QuizEntityTypeConfiguration());

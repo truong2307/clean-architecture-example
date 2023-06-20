@@ -61,8 +61,8 @@ namespace QuizApp.Infrastructure.Persistence.EntityConfigurations
             var navigation = builder.Metadata.FindNavigation(nameof(Quiz.QuizQuestions));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
-            var navigation2 = builder.Metadata.FindNavigation(nameof(Quiz.ClassRooms));
-            navigation2.SetPropertyAccessMode(PropertyAccessMode.Field);
+            //var navigation2 = builder.Metadata.FindNavigation(nameof(Quiz.ClassRooms));
+            //navigation2.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             var navigation3 = builder.Metadata.FindNavigation(nameof(Quiz.QuizFavourites));
             navigation3.SetPropertyAccessMode(PropertyAccessMode.Field);
