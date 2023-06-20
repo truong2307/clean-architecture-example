@@ -17,9 +17,13 @@ namespace QuizApp.Domain.Entities
         private List<QuizQuestion> _quizQuestions;
         public IEnumerable<QuizQuestion> QuizQuestions => _quizQuestions.AsReadOnly();
 
+        private List<ClassRoom> _classRooms;
+        public IEnumerable<ClassRoom> ClassRooms => _classRooms.AsReadOnly();
+        
         protected Quiz()
         {
             _quizQuestions = new List<QuizQuestion>();
+            _classRooms = new List<ClassRoom>();
         }
 
         public Quiz(string title, string description, int quizCategoryId, string createdBy) : this()

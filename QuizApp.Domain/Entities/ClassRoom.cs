@@ -13,9 +13,19 @@ namespace QuizApp.Domain.Entities
         private int _classRoomCategoryId;
         public ClassRoomCategory ClassRoomCategory { get; private set; }
 
-        public ClassRoom() { }
+        private List<Quiz> _quizzes;
+        public IEnumerable<Quiz> Quizzes => _quizzes.AsReadOnly();
 
-        public ClassRoom(string name, string homeRoomTeacherId, string description, int classRoomCategoryId, string createdBy)
+        protected ClassRoom()
+        {
+            _quizzes = new List<Quiz>();
+        }
+
+        public ClassRoom(string name,
+            string homeRoomTeacherId,
+            string description,
+            int classRoomCategoryId,
+            string createdBy) : this()
         {
             Name = name;
             HomeRoomTeacherId = homeRoomTeacherId;

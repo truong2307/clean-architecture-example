@@ -2,17 +2,13 @@
 
 namespace QuizApp.Domain.Entities
 {
-    public class QuizCategory : BaseAuditableEntity
+    public class QuizCategory : Entity
     {
         public string Name { get; private set; }
 
-        public QuizCategory() { }
-
-        public QuizCategory(string name, string createdBy)
+        public QuizCategory(string name)
         {
             Name = name;
-            CreatedBy = createdBy;
-            Created = DateTime.Now;
         }
     }
 }

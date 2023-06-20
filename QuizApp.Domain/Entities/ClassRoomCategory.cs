@@ -2,17 +2,13 @@
 
 namespace QuizApp.Domain.Entities
 {
-    public class ClassRoomCategory : BaseAuditableEntity
+    public class ClassRoomCategory : Entity
     {
         public string Name { get; private set; }
 
-        public ClassRoomCategory() { }
-
-        public ClassRoomCategory(string name, string createdBy)
+        public ClassRoomCategory(string name)
         {
             Name = name;
-            CreatedBy = createdBy;
-            Created = DateTime.Now;
         }
     }
 }

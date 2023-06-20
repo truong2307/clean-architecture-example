@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace QuizApp.Domain.SeedWork
+﻿namespace QuizApp.Domain.SeedWork
 {
     public abstract class BaseAuditableEntity : Entity
     {
@@ -10,6 +8,6 @@ namespace QuizApp.Domain.SeedWork
 
         public DateTime? Updated { get; protected set; }
 
-        public string UpdateddBy { get; protected set; }
+        public string UpdatedBy { get; protected set; }
     }
 }
