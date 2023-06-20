@@ -19,11 +19,19 @@ namespace QuizApp.Domain.Entities
 
         private List<ClassRoom> _classRooms;
         public IEnumerable<ClassRoom> ClassRooms => _classRooms.AsReadOnly();
-        
+
+        private List<QuizFavourite> _quizFavourites;
+        public IEnumerable<QuizFavourite> QuizFavourites => _quizFavourites.AsReadOnly();
+
+        private List<QuizAnswer> _quizAnswers;
+        public IEnumerable<QuizAnswer> QuizAnswers => _quizAnswers.AsReadOnly();
+
         protected Quiz()
         {
             _quizQuestions = new List<QuizQuestion>();
             _classRooms = new List<ClassRoom>();
+            _quizFavourites = new List<QuizFavourite>();
+            _quizAnswers = new List<QuizAnswer>();
         }
 
         public Quiz(string title, string description, int quizCategoryId, string createdBy) : this()

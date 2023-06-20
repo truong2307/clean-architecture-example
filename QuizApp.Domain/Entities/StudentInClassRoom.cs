@@ -1,6 +1,8 @@
-﻿namespace QuizApp.Domain.Entities
+﻿using QuizApp.Domain.SeedWork;
+
+namespace QuizApp.Domain.Entities
 {
-    public class StudentInClassRoom
+    public class StudentInClassRoom : Entity
     {
         private string _studentId;
         private int _classRoomId;
