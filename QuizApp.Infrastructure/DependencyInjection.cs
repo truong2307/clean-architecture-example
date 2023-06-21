@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuizApp.Domain.IRepository;
 using QuizApp.Infrastructure.Identity;
 using QuizApp.Infrastructure.Persistence;
+using QuizApp.Infrastructure.Persistence.Repositories;
 
 namespace QuizApp.Infrastructure
 {
@@ -19,6 +21,11 @@ namespace QuizApp.Infrastructure
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WiQuizDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IClassRoomRepository, ClassRoomRepository>();
+            services.AddScoped<IQuizFavouriteRepository, QuizFavouriteRepository>();
+            services.AddScoped<IQuizRepository, QuizRepository>();
+            services.AddScoped<IStudentInClassRoomRepository, StudentInClassRoomRepository>();
 
             return services;
         }
