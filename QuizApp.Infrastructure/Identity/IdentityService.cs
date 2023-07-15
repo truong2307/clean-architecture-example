@@ -30,6 +30,25 @@ namespace QuizApp.Infrastructure.Identity
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<bool> RegisterUserAsync(string email, string userName, string password)
+        {
+            if ((await _userManager.FindByEmailAsync(email) != null) || (await _userManager.FindByNameAsync(userName)) != null)
+                return false;
+
+            _user = new ApplicationUser()
+            {
+                Email = email,
+                UserName = userName,
+            };
+
+            var rs = await _userManager.CreateAsync(_user, password);
+
+            if(!rs.Succeeded) return false;
+
+            await _userManager.AddToRoleAsync(_user, Role.USER_ROLE);
+            return rs.Succeeded;
+        }
+
         public async Task<bool> ValidateUser(string userAccount, string password)
         {
             _user = await _userManager.FindByEmailAsync(userAccount);

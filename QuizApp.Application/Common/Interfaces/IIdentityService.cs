@@ -9,5 +9,6 @@
         /// <returns></returns>
         Task<bool> ValidateUser(string userAccount, string password);
         Task<string> CreateToken();
+        Task<bool> RegisterUserAsync(string email, string userName, string password);
     }
 }

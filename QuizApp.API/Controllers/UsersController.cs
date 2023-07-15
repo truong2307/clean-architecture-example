@@ -21,5 +21,12 @@ namespace QuizApp.API.Controllers
             var rs = await _mediator.Send(command);
             return Ok(rs);
         }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Resgister([FromBody] RegisterUserCommand command)
+        {
+            var rs = await _mediator.Send(command);
+            return Ok(rs);
+        }
     }
 }
