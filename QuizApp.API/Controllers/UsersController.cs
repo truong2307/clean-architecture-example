@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuizApp.Application.Users.Commands;
 
@@ -6,6 +7,7 @@ namespace QuizApp.API.Controllers
 {
     [Route("api/user")]
     [ApiController]
+    [AllowAnonymous]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;

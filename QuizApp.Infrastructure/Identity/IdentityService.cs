@@ -45,7 +45,7 @@ namespace QuizApp.Infrastructure.Identity
 
             if(!rs.Succeeded) return false;
 
-            await _userManager.AddToRoleAsync(_user, Role.USER_ROLE);
+            await _userManager.AddToRoleAsync(_user, Role.USER);
             return rs.Succeeded;
         }
 
@@ -80,8 +80,8 @@ namespace QuizApp.Infrastructure.Identity
             {
                 new Claim(ClaimTypeUser.USER_NAME, _user.UserName),
                 new Claim(ClaimTypeUser.USER_ID, _user.Id),
-                new Claim(ClaimTypeUser.NICK_NAME, _user.NickName),
-                new Claim(ClaimTypeUser.FULL_NAME, _user.FullName),
+                new Claim(ClaimTypeUser.NICK_NAME, _user.NickName ?? string.Empty),
+                new Claim(ClaimTypeUser.FULL_NAME, _user.FullName ?? string.Empty),
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
