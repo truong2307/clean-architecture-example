@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using QuizApp.API.Filters;
 using QuizApp.Application;
 using QuizApp.Infrastructure;
+using QuizApp.Infrastructure.Identity;
+using QuizApp.Infrastructure.Persistence;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,5 +59,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await WiQuizDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
+}
 
 app.Run();

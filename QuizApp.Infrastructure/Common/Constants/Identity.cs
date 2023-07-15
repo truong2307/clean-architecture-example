@@ -4,9 +4,9 @@
     {
         public class Role
         {
-            public const string ADMIN_ROLE = "Admin";
-            public const string USER_ROLE = "User";
-            public const string MANAGER_ROLE = "Teacher";
+            public const string ADMIN = "Admin";
+            public const string USER = "User";
+            public const string TEACHER = "Teacher";
         }
 
         public static class ClaimTypeUser
