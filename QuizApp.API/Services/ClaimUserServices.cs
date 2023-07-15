@@ -14,7 +14,7 @@ namespace QuizApp.API.Services
 
         public string GetCurrentUserName() => _httpContextAccessor.HttpContext.User?.FindFirst(ClaimTypes.Name)?.Value;
 
-        public string GetCurrentUserId() => _httpContextAccessor.HttpContext.User?.FindFirst(Identity.ClaimTypeUser.TYPE_USERID)?.Value;
+        public string GetCurrentUserId() => _httpContextAccessor.HttpContext.User?.FindFirst(Identity.ClaimTypeUser.USER_ID)?.Value;
 
         public string GetCurrentUserRole() => _httpContextAccessor.HttpContext.User?.FindFirst(ClaimTypes.Role)?.Value;
     }

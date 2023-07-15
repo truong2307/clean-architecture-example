@@ -59,14 +59,16 @@ namespace QuizApp.Infrastructure.Identity
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypeUser.TYPE_NAME, _user.UserName),
-                new Claim(ClaimTypeUser.TYPE_USERID, _user.Id),
+                new Claim(ClaimTypeUser.USER_NAME, _user.UserName),
+                new Claim(ClaimTypeUser.USER_ID, _user.Id),
+                new Claim(ClaimTypeUser.NICK_NAME, _user.NickName),
+                new Claim(ClaimTypeUser.FULL_NAME, _user.FullName),
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
             {
-                claims.Add(new Claim(ClaimTypeUser.TYPE_ROLE, role));
+                claims.Add(new Claim(ClaimTypeUser.ROLE, role));
             }
 
             return claims;

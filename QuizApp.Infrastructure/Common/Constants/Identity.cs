@@ -11,9 +11,11 @@
 
         public static class ClaimTypeUser
         {
-            public const string TYPE_NAME = "name";
-            public const string TYPE_USERID = "userId";
-            public const string TYPE_ROLE = "role";
+            public const string USER_NAME = "name";
+            public const string USER_ID = "userId";
+            public const string ROLE = "role";
+            public const string NICK_NAME = "nickName";
+            public const string FULL_NAME = "fullName";
         }
     }
 }
