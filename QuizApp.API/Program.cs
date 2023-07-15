@@ -1,10 +1,12 @@
 using Microsoft.OpenApi.Models;
+using QuizApp.Application;
 using QuizApp.Infrastructure;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
