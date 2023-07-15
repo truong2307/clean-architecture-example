@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using QuizApp.Application.Common.Behaviours;
 using System.Reflection;
 
 namespace QuizApp.Application
@@ -10,14 +10,11 @@ namespace QuizApp.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-            services.AddFluentValidationAutoValidation();
-            services.AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-           
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
             });
 
             return services;
