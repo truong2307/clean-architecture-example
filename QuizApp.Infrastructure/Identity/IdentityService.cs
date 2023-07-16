@@ -43,9 +43,9 @@ namespace QuizApp.Infrastructure.Identity
 
             var rs = await _userManager.CreateAsync(_user, password);
 
-            if(!rs.Succeeded) return false;
+            if (!rs.Succeeded) return false;
 
-            await _userManager.AddToRoleAsync(_user, Role.USER);
+            rs = await _userManager.AddToRoleAsync(_user, Role.USER);
             return rs.Succeeded;
         }
 
