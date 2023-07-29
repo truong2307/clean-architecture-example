@@ -1,18 +1,29 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using QuizApp.API.Filters;
+using QuizApp.API.Services;
 using QuizApp.Application;
+using QuizApp.Application.Common.Interfaces;
 using QuizApp.Infrastructure;
 using QuizApp.Infrastructure.Identity;
 using QuizApp.Infrastructure.Persistence;
+using Serilog;
 using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var logger = new LoggerConfiguration() 
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger); //Regist serilog
+
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IClaimUserServices, ClaimUserServices>();
 
 builder.Services.AddControllers(options =>
 {
